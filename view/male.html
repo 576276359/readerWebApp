@@ -1,0 +1,233 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="format-detection" content="telephone=no">
+    <link type="text/css" rel="stylesheet" href="../static/css/reset.css">
+    <style type="text/css">
+        .main{
+            border-bottom: 10px solid #f0f0f0;
+        }
+        .list_page .list_title{
+            border-bottom: 1px solid #f0f0f0;
+            border-left: 6px solid #ffab18;
+            padding: 10px 14px;
+            position: relative;
+        }
+        .list_page .book{
+            padding: 0 14px;
+        }
+        .list_page .book li{
+            padding: 15px 0 0;
+            overflow: hidden;
+        }
+        .list_page  .book_cover{
+            width: 86px;
+            height: 113px;
+            overflow: hidden;
+            float: left;
+            margin-right: 15px;
+        }
+        .list_page  .book_cover img{
+            width: 100%;
+            height: 100%;
+        }
+        .list_page .info{
+            margin-left: 0px;
+            padding-top: 8px;
+        }
+        .list_page .info .title{
+            font-size: 13px;
+            line-height: 1.4em;
+            max-height: 2.8em;
+            overflow: hidden;
+            color: #8d8d8d;
+            margin-bottom: 0px;
+            text-align: left;
+            font-weight: normal;
+        }
+        .list_page .info .autor{
+            margin:8px 0 0;
+            height: 2.8em;
+            font: 12px/1.4em a;
+            color: rgba(0,0,0,0.6);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            display: -webkit-box;
+            -webkit-line-clamp:2;
+            -webkit-box-orient: vertical;
+        }
+        .list_page .info .autor{
+            margin-bottom:8px;
+            font: 12px/12px a;
+            color: rgba(0,0,0,0.7);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .list_page .wrap{
+            float: right;
+        }
+        .list_page .wrap .book-tag{
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            float: left;
+            line-height: 1;
+            margin: 0.2rem -3px 0 0;
+            max-width: 6em;
+            overflow: hidden;
+            padding: 2px;
+            text-overflow: ellipsis;
+            transform: scale(0.8);
+            white-space: nowrap;
+        }
+        .more{
+            border-top: 1px solid #f0f0f0;
+            display: block;
+            font-size: 14px;
+            padding: 10px 0;
+            text-align: center;
+        }
+    </style>
+    <title>男生频道</title>
+
+</head>
+<body>
+<div id="app" v-bind:style="{width: screenWidth+'px',overflow:'hidden',height: '100%'}">
+    <% include include/common-header.html %>
+    <div class="container_scroll" v-bind:style="{width: screenWidth+'px',overflowY: 'scroll',height:scrollH+'px'}" >
+       <div class="list_page">
+           <section class="main focus">
+                    <div class="list">
+                        <div class="list_title">
+                            <p>最受关注 </p>
+                        </div>
+               <ul class="book">
+                   <li v-for="item in focus">
+                       <div class="book_cnt">
+                           <div class="book_cover">
+                               <img v-bind:src="item.cover"  alt={{item.title}}>
+                           </div>
+                           <div class="info">
+                               <div class="title">
+                                   <p>借记卡</p>
+                               </div>
+                               <p class="desc">{{item.summary}}</p>
+                               <p class="autor">{{item.authors}}</p>
+                           </div>
+                           <div class="wrap">
+                               <div class="book-tag" v-for="tag in item.tags">{{tag}}</div>
+                           </div>
+                       </div>
+                   </li>
+               </ul>
+               <a href="#" class="more">
+                   <p>{{focusHiddeninfo}}</p>
+               </a>
+                    </div>
+           </section>
+           <section class="main Recommend">
+               <div class="list">
+                   <div class="list_title">
+                       <p>主编推荐 </p>
+                   </div>
+
+                   <ul class="book">
+                       <li v-for="item in recommend">
+                           <div class="book_cnt">
+                               <div class="book_cover">
+                                   <img v-bind:src="item.cover"  alt={{item.title}}>
+                               </div>
+                               <div class="info">
+                                   <div class="title">
+                                       <p>{{item.title}}</p>
+                                   </div>
+                                   <p class="desc">{{item.summary}}</p>
+                                   <p class="autor">{{item.authors}}</p>
+                               </div>
+                               <div class="wrap">
+                                   <div class="book-tag">都市生活</div>
+                                   <div class="book-tag">{{tag}}</div>
+                               </div>
+                           </div>
+                       </li>
+
+                   </ul>
+                   <a href="#" class="more">
+                       <p>查看更多</p>
+                   </a>
+               </div>
+           </section>
+           <section class="main new">
+               <div class="list">
+                   <div class="list_title">
+                       <p>新书入库 </p>
+                   </div>
+
+                   <ul class="book">
+                       <li v-for="item in new">
+                           <div class="book_cnt">
+                               <div class="book_cover">
+                                   <img v-bind:src="item.cover"  alt={{item.title}}>
+                               </div>
+                               <div class="info">
+                                   <div class="title">
+                                       <p>{{item.title}}</p>
+                                   </div>
+                                   <p class="desc">{{item.summary}}</p>
+                                   <p class="autor">{{item.authors}}</p>
+                               </div>
+                               <div class="wrap">
+                                   <div class="book-tag">都市生活</div>
+                                   <div class="book-tag">{{tag}}</div>
+                               </div>
+                           </div>
+                       </li>
+                   </ul>
+                   <a href="#" class="more">
+                       <p>查看更多</p>
+                   </a>
+               </div>
+           </section>
+           <section class="main complet">
+               <div class="list">
+                   <div class="list_title">
+                       <p>完结好书 </p>
+                   </div>
+
+                   <ul class="book">
+                       <li v-for="item in end">
+                           <div class="book_cnt">
+                               <div class="book_cover">
+                                   <img v-bind:src="item.cover"  alt={{item.title}}>
+                               </div>
+                               <div class="info">
+                                   <div class="title">
+                                       <p>{{item.title}}</p>
+                                   </div>
+                                   <p class="desc">{{item.summary}}</p>
+                                   <p class="autor">{{item.authors}}</p>
+                               </div>
+                               <div class="wrap">
+                                   <div class="book-tag">都市生活</div>
+                                   <div class="book-tag">{{tag}}</div>
+                               </div>
+                           </div>
+                       </li>
+                   </ul>
+                   <a href="#" class="more">
+                       <p>查看更多</p>
+                   </a>
+               </div>
+           </section>
+       </div>
+    </div>
+</div>
+<script src="../static/script/vue.js"></script>
+<script src="../static/script/zepto.js"></script>
+<script src="../static/script/pages/male.js"></script>
+</body>
+</html>

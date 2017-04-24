@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="format-detection" content="telephone=no">
+    <link type="text/css" rel="stylesheet" href="../static/css/reset.css">
+    <style type="text/css">
+        .main{
+            padding: 0 14px;
+            padding-bottom: 15px;
+        }
+        .title{
+            border-bottom: 1px solid #f0f0f0;
+            box-sizing: border-box;
+            color: #8a8d8e;
+            line-height: 2.4em;
+            margin-top: 10px;
+            position: relative;
+        }
+        .title h1{
+            font-weight: normal;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .title em{
+            display: inline-block;
+            height: 16px;
+            width: 16px;
+            background: url("../static/img/category.png") no-repeat left;
+            background-size: 100%;
+            vertical-align: middle;
+        }
+        .list{
+            background-image:url("http://image.read.duokan.com/mfsv2/download/fdsc3/p01QWENuGJAt/y7VgLH8QWpmHVn.jpg!m");
+            background-position: right bottom;
+            background-repeat: no-repeat;
+            background-color: #eee;
+            background-size: 100% auto;
+            box-sizing: border-box;
+            color: #515151;
+            height: 66px;
+            padding: 16px 6px 0;
+            width: 100%;
+        }
+        .itemsList ul li{
+            float: left;
+            margin: 2% 0 0;
+            width: 49%;
+        }
+        .itemsList ul{
+            overflow: hidden;
+        }
+        .itemsList ul li:nth-child(2n+1){
+            margin-right: 2%;
+        }
+    </style>
+    <title>分类</title>
+
+</head>
+<body>
+<div id="app" v-bind:style="{width: screenWidth+'px',overflow:'hidden',height: '100%'}">
+    <% include include/common-header.html %>
+    <div class="container_scroll" v-bind:style="{width: screenWidth+'px',overflowY: 'scroll',height:scrollH+'px'}" >
+
+            <section class="main">
+                <div class="title">
+                        <em></em>
+                        <h1>网文男频</h1>
+                </div>
+                    <div class="itemsList">
+                        <ul>
+                            <li v-for="item in items.male">
+                                <div class="list" v-bind:style="{backgroundImage:'url('+item.new_image+')'}">
+                                    <h3 class="name">{{item.label}}</h3>
+                                    <p class="num">{{item.fiction_count}}</p>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+            </section>
+            <section class="main">
+                <div class="title">
+                    <em></em>
+                    <h1>网文女频</h1>
+                </div>
+                <div class="itemsList">
+                    <ul>
+                        <li v-for="item in items.female">
+                            <div class="list" v-bind:style="{backgroundImage:'url('+item.new_image+')'}">
+                                <h3 class="name">{{item.label}}</h3>
+                                <p class="num">{{item.fiction_count}}</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+    </div>
+</div>
+<script src="../static/script/vue.js"></script>
+<script src="../static/script/zepto.js"></script>
+<script src="../static/script/pages/category.js"></script>
+</body>
+</html>

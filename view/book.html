@@ -1,0 +1,343 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="format-detection" content="telephone=no">
+    <link type="text/css" rel="stylesheet" href="../static/css/reset.css">
+    <style type="text/css">
+        .main_card{
+            border-bottom: 10px solid #f5f5f5;
+        }
+        .main_card.folder{
+            padding-bottom: 1px;
+        }
+        .main_card.folder .cnt{
+            margin-bottom: 12px;
+        }
+        .main_card>.cnt,.main_card .list li{
+            padding-left: 14px;
+            padding-right: 14px;
+        }
+        .u_title h1{
+            margin-bottom: 8px;
+            padding-left: 14px;
+            padding-right: 14px;
+            font-size: 15px;
+            color: #8d8d8d;
+            padding-top: 15px;
+            font-weight: normal;
+        }
+        .u_book{
+            position: relative;
+            overflow: hidden;
+        }
+        .u_book.detail{
+            padding: 40px;
+            display: table;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .u_book.detail .book_cover{
+            width: 100px;
+            height: 134px;
+        }
+        .u_book.detail .autor{
+            color: #4699a7;
+        }
+        .u_book.detail .autor span{
+            display: inline-block;
+            margin-right: 5px;
+        }
+        .u_book.detail .info{
+            padding: 0 0 0 14px;
+            display: table-cell;
+            vertical-align: middle;
+        }
+        .book_cover{
+            position: relative;
+            background: #eeece9;
+            box-shadow: 0px 6px 5px -3px #aaa;
+            border: 1px solid #f0f0f0;
+            border-bottom: none;
+            overflow: hidden;
+        }
+        .book_cover>img{
+            width: 100%;
+            height: 100%;
+        }
+        .u_booktag{
+            margin-left: 3px;
+            border: 1px solid #00a0e9;
+            color: #fff;
+            border-radius: 4px;
+            font-size: 12px;
+            line-height: 16px;
+            display: inline-block;
+            padding: 0 2px;
+        }
+        .u_booktag.serial{
+            color: #63bd6e;
+            border-color:#63bd6e;
+        }
+        .book_dash .wrap{
+            padding: 0 14px;
+            margin: 0 0 27px;
+        }
+        .book_dash_text:after{
+            content: '\5f00\59cb\9605\8bfb';
+        }
+        .btn-group{
+            width: 100%;
+            font-size: 0px;
+            white-space: nowrap;
+        }
+        .btn-group li{
+            display: inline-block;
+            width: 49%;
+        }
+        .btn-group li:only-child{
+            width: 100%;
+        }
+        .btn-group li:first-child{
+            margin-right: 2%;
+        }
+        .u_btn2{
+            display: block;
+            height: 2.8em;
+            line-height: 2.8em;
+            text-align: center;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+            background: #f35d02;
+            color: #fff;
+            padding: 0 10px;
+        }
+        .folder_cnt{
+            position: relative;
+            line-height: 1.6;
+            padding: 0 14px;
+            margin-bottom: 10px;
+            color: #585858;
+        }
+        .folder-tail{
+            text-align: center;
+            font-size: 14px;
+            border-top: 1px solid #f0f0f0;
+            color: #8d8d8d;
+            padding: 10px 0;
+        }
+        .u_floder>.folder_top h3{
+            font-size: 16px;
+            font-weight: normal;
+            color: #8d8d8d;
+            padding: 14px 14px 8px;
+        }
+        .m_tag{
+            line-height: 1;
+            overflow: hidden;
+        }
+        .m_tag.color .u_tah:nth-child(3n+1){
+            background-color: #fbebe8;
+        }
+        .m_tag.color .u_tah:nth-child(3n+2){
+            background-color: #fcedda;
+        }
+        .m_tag.color .u_tah:nth-child(3n+3){
+            background-color: #e8f9db;
+        }
+        .m_tag .u_tah{
+            margin: 0 10px 5px 0;
+            display: inline-block;
+            width: auto;
+            line-height: 1.8em;
+            padding: 0 20px;
+            color: #766d5d;
+            border-radius: 4px;
+            background: #909da8;
+            font-size: 14px;
+            text-align: center;
+            border: 1px solid #d3d3d3;
+        }
+        .u_book.vertical{
+            width: 86px;
+        }
+        .u_book.vertical .title
+        {
+            font-size: 13px;
+            line-height: 1.4em;
+            max-height: 2.8em;
+            overflow: hidden;
+            color: #8d8d8d;
+            margin-bottom: 0px;
+            text-align: left;
+        }
+        .u_book.vertical .book_cover{
+            float: none;
+            height: 113px;
+            width: 86px;
+        }
+        .u_book.vertical .book_cover img{
+            width: 100%;
+            height: 100%;
+        }
+        .u_book.vertical .info{
+            margin-left: 0px;
+            padding-top: 8px;
+        }
+        .book_table{
+            font-size: 0px;
+        }
+        .book_table li{
+            width: 33.3%;
+            display: inline-block;
+            vertical-align: top;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        .book_table li>*{
+            display: inline-block;
+        }
+        .book_table li:nth-child(3n+1){
+            text-align: left;
+        }
+        .book_table li:nth-child(3n+2){
+            text-align: center;
+        }
+        .book_table li:nth-child(3n+3){
+            text-align: right;
+        }
+        .book_footer{
+            padding: 25px 0 30px 15px;
+            color: #8d8d8d;
+            line-height: 25px;
+        }
+        .book_footer .u_title h2{
+            color: #8d8d8d;
+            font-weight: normal;
+
+        }
+    </style>
+    <title>书籍详情</title>
+
+</head>
+<body>
+<div id="app" style="width:734px;overflow:hidden;height: 100%;">
+    <% include include/common-header.html %>
+    <div class="container_scroll" style="width: 734px;overflow-y: scroll;">
+        <div class="book_page">
+            <section class="main_card" style="border-bottom: none">
+                    <div class="u_book detail">
+                        <div class="book_cover">
+                            <img v-bind:src="item.cover" alt={{item.title}}>
+                        </div>
+                        <div class="info">
+                        <h3 class="title">{{item.title}}</h3>
+                        <p class="autor">
+                            <span>{{item.authors}}</span>
+                        </p>
+                        <div class="u_grade">
+                            <span class="read">
+                               {{item.score_count}}个评价
+                            </span>
+                        </div>
+                        <p class="price">价格:{{item.price}}书币/千字</p>
+                        <p class="count">
+                            字数：{{item.word_count}}字
+                            <span class="u_booktag serial">连载中</span>
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <section class="main_card folder">
+                <div class="book_dash">
+                    <div class="wrap">
+                        <ul class="btn-group">
+                            <li class="u_btn2" v-on:click="readBook()">
+                                <span class="book_dash_text"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="u_floder">
+                    <div class="folder_cnt">
+                        {{item.content}}
+                    </div>
+                    <div class="folder-tail">
+                        <div>最新:{{item.latest}}</div>
+                    </div>
+                </div>
+            </section>
+            <section class="main_card">
+                <div class="u_floder">
+                    <div class="folder_top">
+                        <h3>类别标签</h3>
+                    </div>
+                    <div class="folder_cnt">
+                        <ul class="m_tag color">
+                            <li class="u_tah" v-for="tag in item.tags">
+                               {{tag}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section class="main_card">
+                <div class="u_title">
+                    <h1>本书作者的其他书</h1>
+                </div>
+                <div class="cnt">
+                    <ul class="book_table">
+                        <li v-for="book in author_books">
+                            <div class="u_book vertical">
+                                <div class="book_cover">
+                                    <img v-bind:src="book.cover"  alt={{book.title}}>
+                                </div>
+                                <div class="info">
+                                    <p class="title">{{book.title}}</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <section class="main_card">
+                <div class="u_title">
+                    <h1>喜欢本书的人也喜欢</h1>
+                </div>
+                <div class="cnt">
+                    <ul class="book_table">
+                        <li v-for="book in related">
+                            <div class="u_book vertical">
+                                <div class="book_cover">
+                                    <img v-bind:src="book.cover" alt="{{book.title}}">
+                                </div>
+                                <div class="info">
+                                    <p class="title">{{book.title}}</p>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </section>
+            <section class="book_footer">
+                <div class="u_title">
+                        <h2>图书信息</h2>
+                </div>
+                <div class="cnt">
+                    <p>版权：小说阅读网</p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+
+</div>
+<script src="../static/script/vue.js"></script>
+<script src="../static/script/zepto.js"></script>
+<script src="../static/script/pages/book.js"></script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="format-detection" content="telephone=no">
+    <link type="text/css" rel="stylesheet" href="../static/css/reset.css">
+    <style type="text/css">
+        .listWrap{
+
+        }
+        .list{
+            padding: 10px 14px 8px 14px;
+            border-bottom: 1px solid #f0f0f0;
+            overflow: hidden;
+        }
+        .rankListImg{
+            width: 90px;
+            height: 90px;
+            overflow: hidden;
+            float: left;
+            margin-right: 15px;
+        }
+        .rankListImg img{
+            width: 100%;
+            height: 100%;
+        }
+        .rankInfo{
+            font-size: 14px;
+            line-height: 26px;
+            margin-left: 108px;
+            margin-top: 5px;
+            white-space: nowrap;
+        }
+    </style>
+    <title>男生频道</title>
+
+</head>
+<body>
+<div id="app" v-bind:style="{width: '734px',overflow:'hidden',height: '100%'}">
+    <% include include/common-header.html %>
+    <div class="container_scroll" v-bind:style="{width: '734px',overflowY: 'scroll',height:scrollH+'px'}" >
+        <div class="listWrap">
+            <ul>
+                <li v-for="item in items" v-if="$index>18">
+                    <div class="list" >
+                        <div class="rankListImg">
+                            <img v-bind:src="item.cover" alt={{item.name}}>
+                        </div>
+                        <div class="rankInfo">
+                            <p v-for="book in item.description">{{$index+1}}  {{book}}</p>
+
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script src="../static/script/vue.js"></script>
+<script src="../static/script/zepto.js"></script>
+<script src="../static/script/pages/rank.js"></script>
+</body>
+</html>

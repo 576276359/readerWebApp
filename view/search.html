@@ -1,0 +1,216 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="format-detection" content="telephone=no">
+    <link type="text/css" rel="stylesheet" href="../static/css/reset.css">
+    <style type="text/css">
+        .search_top{
+            background: #efeff0 none repeat scroll 0 0;
+            /*border-bottom: 1px solid #ddd;*/
+            /*height: 44px;*/
+            padding-top: 5px;
+            background: #fff;
+            position: relative;
+        }
+        .search_input{
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
+            height: 35px;
+            margin: 0px 20px 5px 42px;
+            position: relative;
+
+        }
+        .search_input input{
+            background: #fff none repeat scroll 0 0;
+            border: medium none;
+            box-sizing: border-box;
+            color: rgba(0, 0, 0, 0.8);
+            display: block;
+            font-size: 14px;
+            height: 100%;
+            padding: 8px 52px 8px 42px;
+            width: 100%;
+
+        }
+        .search_input_icon{
+            background: rgba(0, 0, 0, 0) url("http://image.read.duokan.com/mfsv2/download/s010/p01TjruXIhgt/PP13pEqhpChuay.png") no-repeat scroll center center / 16px 16px;
+            border-right: 1px solid rgba(0, 0, 0, 0.1);
+            height: 35px;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 36px;
+        }
+        .search_input_btn{
+            border-left: 1px solid #ddd;
+            color: #666;
+            display: block;
+            font-size: 14px;
+            line-height: 36px;
+            padding: 0 8px;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+        .search_tags{
+
+        }
+        .search_tags ul{
+            line-height: 1;
+            padding: 17px;
+            overflow: hidden;
+        }
+        .search_tags .u-tag{
+            background: #909da8 none repeat scroll 0 0;
+            border: 1px solid #d3d3d3;
+            border-radius: 4px;
+            color: #766d5d;
+            display: inline-block;
+            font-size: 14px;
+            line-height: 1.8em;
+            padding: 0 20px;
+            text-align: center;
+            width: auto;
+            margin-bottom: 10px;
+        }
+        .search_tags .u-tag:nth-child(3n+1){
+            background-color: #fbebe8;
+        }
+        .search_tags .u-tag:nth-child(3n+2){
+            background-color:  #fcedda;
+        }
+        .search_tags .u-tag:nth-child(3n+3){
+            background-color: #e8f9db;
+        }
+        .search_list li{
+            overflow: hidden;
+            margin-top: 15px;
+        }
+        .search_list{
+            bottom: 0;
+            left: 0;
+            overflow: auto;
+            position: relative;
+            right: 0;
+            top: 10px;
+            padding: 0 14px;
+            width: 100%;
+            box-sizing: border-box;
+            padding-bottom: 15px;
+        }
+        .search_list ul{
+            overflow: hidden;
+        }
+        .search_list .search_list_book_cover{
+            width: 86px;
+            height: 113px;
+            overflow: hidden;
+            float: left;
+            margin-right: 15px;
+        }
+        .search_list .search_list_book_cover img{
+            width: 100%;
+            height: 100%;
+        }
+        .search_list .info{
+            margin-left: 0px;
+            padding-top: 8px;
+        }
+        .search_list .info .title{
+            font-size: 13px;
+            line-height: 1.4em;
+            max-height: 2.8em;
+            overflow: hidden;
+            color: #8d8d8d;
+            margin-bottom: 0px;
+            text-align: left;
+            font-weight: normal;
+        }
+        .search_list .info .autor{
+            margin-bottom:8px;
+            font: 12px/12px a;
+            color: rgba(0,0,0,0.7);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .search_list .info .desc{
+            margin:8px 0 0;
+            height: 2.8em;
+            font: 12px/1.4em a;
+            color: rgba(0,0,0,0.6);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            display: -webkit-box;
+            -webkit-line-clamp:2;
+            -webkit-box-orient: vertical;
+        }
+        .search_end_empty{
+            text-align: center;
+            padding: 15px 0;
+
+        }
+
+    </style>
+    <title>搜索</title>
+
+</head>
+<body>
+<div id="search" v-bind:style="{width:screenWidth+'px',overflow:'hidden',height: '100%'}" >
+    <% include include/common-header.html %>
+    <div class="container_scroll" v-bind:style="{width:screenWidth+'px',height:scrollH+'px',overflowY:'scroll'}" >
+
+            <section class="search_top">
+                    <div class="search_input">
+                        <b class="search_input_icon"></b>
+                        <input type="text" id="keyword">
+                        <div id="Tag__1" class="search_input_btn" v-on:click="doSearch()">搜索</div>
+                    </div>
+                    <div class="search_tags"  v-show="condition">
+                        <ul>
+                            <li  class="u-tag">择天记</li>
+                            <li  class="u-tag">一夜弃妃</li>
+                            <li  class="u-tag">诛仙</li>
+                            <li class="u-tag">豪门小老婆</li>
+                            <li  class="u-tag">异能小农民</li>
+                            <li  class="u-tag">武动乾坤</li>
+                        </ul>
+                    </div>
+
+            </section>
+        <section>
+            <div class="search_list" v-show="!condition">
+                <div class="searc_list_wrap">
+                    <ul>
+                        <li v-for="item in search" v-if="!empty">
+                            <div class="search_list_book">
+                                <div class="search_list_book_cover">
+                                    <img v-bind:src="item.cover" alt="{{item.title}}">
+                                </div>
+                                <div class="info">
+                                    <h2 class="title">{{item.title}}</h2>
+                                    <p class="desc">{{ item.intro }}</p>
+                                    <p class="autor">{{item.authors}}</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="search_end_empty" v-show="empty">
+                    <div class="empty_text">
+                        <p class="u-tip">没有相应的搜索结果</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div><!--滚动-->
+</div><!--固定-->
+<script src="../static/script/vue.js"></script>
+<script src="../static/script/zepto.js"></script>
+<script src="../static/script/pages/search.js"></script>
+</body>
+</html>

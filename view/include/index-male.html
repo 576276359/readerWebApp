@@ -1,0 +1,35 @@
+
+<section class="channel">
+    <div class="channel_header">
+        <p class="channel_title">
+            男生最爱
+        </p>
+    </div>
+    <div>
+        <div>
+            <ul class="list">
+                <li v-for="item in male" v-if="$index<5">
+                    <div class="book">
+                        <div class="book_img">
+                            <img v-bind:src="item.cover" alt={{item.title}}>
+                            <p class="book_finish">完结</p>
+                        </div>
+
+                        <div class="book_info">
+                            <p class="book_info_title">{{item.title}}</p>
+                            <p class="book_info_autor">{{item.authors}}</p>
+                            <p class="book_info_summary">{{item.summary}}</p>
+                            <div class="book_wrap">
+                                <div class="book_tag" v-for="tag in item.tags">{{tag}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="channel_footer_next">
+            <a href="javascript:;">换一换</a>
+            <a href="/male">男生频道&gt&gt</a>
+        </div>
+    </div>
+</section>

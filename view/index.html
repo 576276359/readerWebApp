@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="format-detection" content="telephone=no">
+    <link type="text/css" rel="stylesheet" href="../static/css/reset.css">
+    <link type="text/css" rel="stylesheet" href="../static/css/all.css">
+    <style>
+        html,body{
+            height: 100%;
+        }
+        .container{
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        .container-scroll{
+            top:45px;
+            bottom:0px;
+            left:0px;
+            right: 0px;
+            overflow-y:scroll;
+        }
+    </style>
+    <title>书城首页</title>
+
+</head>
+<body>
+<div id="app" v-bind:style="{width:screenWidth+'px',overflow:'hidden',height:'100%'}">
+    <% include include/header.html %>
+    <div v-bind:style="{width:doubleScreenW+'px',transitionDuration:'0.5s',transform:'translate3d('+ position+'px,0px,0px)'}" >
+        <div class="container" v-bind:style="{width:screenWidth+'px',float:'left'}" >
+            <div class="container-scroll" v-bind:style="{height:scrollH+'px'}" >
+                <% include include/index-top.html %>
+                <% include include/index-hot.html %>
+                <% include include/index-recommend.html %>
+                <% include include/index-female.html %>
+                <% include include/index-male.html %>
+                <% include include/index-free.html %>
+                <% include include/index-bottom.html %>
+            </div>
+        </div>
+        <div v-bind:style="{width:screenWidth+'px',float:'left'}">
+            <% include include/index-shelf.html %>
+        </div>
+    </div>
+</div>
+<script src="../static/script/vue.js"></script>
+<script src="../static/script/zepto.js"></script>
+<script src="../static/script/pages/index.js"></script>
+</body>
+</html>
